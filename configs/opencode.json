@@ -1,0 +1,40 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "llama.cpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Local llama.cpp",
+      "options": {
+        "baseURL": "http://localhost:YOUR_PORT/v1"
+      },
+      "models": {
+        "qwen3.5-coding": {
+          "name": "Qwen3.5-35B-A3B (Fast, MoE)",
+          "limit": { "context": 131072, "output": 32000 }
+        },
+        "gemma-4-31B": {
+          "name": "Gemma 4 31B Dense (Quality)",
+          "limit": { "context": 131072, "output": 32000 }
+        }
+      }
+    }
+  },
+  "model": "llama.cpp/qwen3.5-coding",
+  "permission": { "*": "allow" },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": ["npx", "-y", "chrome-devtools-mcp@latest",
+                  "--executablePath", "/usr/bin/chromium",
+                  "--chromeArg", "--no-sandbox"],
+      "enabled": true
+    }
+  }
+}

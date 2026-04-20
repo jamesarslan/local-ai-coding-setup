@@ -1,0 +1,44 @@
+{
+  "_comment": "OpenClaw configuration for llama-server (OpenAI-compatible mode)",
+  "_comment2": "Replace YOUR_TELEGRAM_BOT_TOKEN with your @BotFather token",
+
+  "models": {
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://localhost:10500",
+        "apiKey": "no-key",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3.5-coding-unsloth",
+            "name": "Qwen3.5-35B-A3B Unsloth UD-Q4_K_XL",
+            "reasoning": true,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 131072,
+            "maxTokens": 32000
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": { "primary": "ollama/qwen3.5-coding-unsloth" }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "open",
+      "botToken": "YOUR_TELEGRAM_BOT_TOKEN",
+      "groupPolicy": "open",
+      "streaming": "partial"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan"
+  }
+}

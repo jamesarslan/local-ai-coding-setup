@@ -1,0 +1,23 @@
+# Ollama Modelfile for Qwen3.5-35B-A3B with optimal coding parameters
+# Usage:
+#   ollama create qwen3.5-coding -f ollama-modelfile
+#
+# Note: Unsloth HF GGUFs are incompatible with Ollama 0.18.2 on Windows.
+# Use the Ollama registry model instead:
+#   FROM qwen3.5:35b-a3b
+# Or if you have a working GGUF:
+#   FROM /path/to/your-model.gguf
+
+FROM qwen3.5:35b-a3b
+TEMPLATE {{ .Prompt }}
+RENDERER qwen3.5
+PARSER qwen3.5
+
+# Official Qwen3.5 parameters for coding (thinking mode)
+PARAMETER temperature 0.6
+PARAMETER top_p 0.95
+PARAMETER top_k 20
+PARAMETER min_p 0.0
+PARAMETER presence_penalty 0.0
+PARAMETER repeat_penalty 1.0
+PARAMETER num_ctx 131072
